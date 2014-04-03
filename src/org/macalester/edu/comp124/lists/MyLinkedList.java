@@ -10,65 +10,91 @@ package org.macalester.edu.comp124.lists;
  * @param <E>
  */
 public class MyLinkedList<E> {
-	private MyLinkedNode<E> head;
-	private MyLinkedNode<E> tail;
-	private int numElements = 0;
+    private MyLinkedNode<E> head;
+    private MyLinkedNode<E> tail;
+    private int numElements = 0;
 
     /**
      * Creates a new empty linked list.
      */
-	public MyLinkedList() {
-		head = new MyLinkedNode<E>(null);
-		tail = new MyLinkedNode<E>(null);
-		clear();
-	}
+    public MyLinkedList() {
+        head = new MyLinkedNode<E>(null);
+        tail = new MyLinkedNode<E>(null);
+        clear();
+    }
 
     /**
      * Returns the element at position index.
      * @param index
      * @return
      */
-	public E get(int index) {
-		return null;
-	}
+    public E get(int index) {
+        MyLinkedNode<E> ind = head;
+        for(int i = 0; i <= index; i++){
+            ind = ind.getNext();
+        }
+        return ind.getValue();
+    }
 
     /**
      * Adds a new element to the end of the list:
      *
      * @param elem
      */
-	public void add(E elem) {
-	}
+    public void add(E elem) {
+
+        MyLinkedNode<E> newNode = new MyLinkedNode<E>(elem);
+        MyLinkedNode<E> prev = tail.getPrev();
+        tail.setPrev(newNode);
+        prev.setNext(newNode);
+        numElements++;
+
+    }
 
     /**
      * Inserts a new element at the specified index.
      *
      * @param elem
      */
-	public void add(int i, E elem) {
-	}
+    public void add(int i, E elem) {
+        MyLinkedNode<E> ind = head;
+        for(int x = 0; x <= i; x++){
+            ind = ind.getNext();
+        }
+
+        MyLinkedNode<E> first = head;
+        for(int x = 0; x < i; x++){
+            first = first.getNext();
+        }
+
+        MyLinkedNode<E> newNode = new MyLinkedNode<E>(elem);
+        ind.setPrev(newNode);
+        first.setNext(newNode);
+        numElements++;
+
+    }
 
     /**
      * Returns the current size of the list.
      * @return
      */
-	public int size() {
-		return numElements;
-	}
+    public int size() {
+        return numElements;
+    }
 
     /**
      * Clears the contents of the list.
      */
-	public void clear() {
-		// set head's next to the tail
-		head.setNext(tail);
-		head.setPrev(null);
-		
-		// set tails prev to the head
-		tail.setPrev(head);
-		tail.setNext(null);
-		numElements = 0;
-	}
+    public void clear() {
+        // set head's next to the tail
+        head.setNext(tail);
+        head.setPrev(null);
+
+        // set tails prev to the head
+        tail.setPrev(head);
+        tail.setNext(null);
+        numElements = 0;
+    }
 
 
     /**
