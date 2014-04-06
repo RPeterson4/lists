@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TestList {
-    private MyArrayList<String> list = new MyArrayList<String>();
+    private MyLinkedList<String> list = new MyLinkedList<String>();
 
     @Test
 	public void testGet() {
@@ -30,6 +30,7 @@ public class TestList {
         list.add("bar");
         list.add("baz");
 		assertEquals(3, list.size());
+        System.out.println(list.get(0));
 		assertEquals("foo", list.get(0));
 		list.add("foobar");
 		assertEquals(4, list.size());
@@ -66,6 +67,9 @@ public class TestList {
 		list.add(1, "foobar");
 		assertEquals(4, list.size());
 		assertEquals("foobar", list.get(1));
+        for(int i = 0;  i< list.size(); i++){
+            System.out.println(list.get(i));
+        }
 		assertEquals("baz", list.get(3));
 	}
 
